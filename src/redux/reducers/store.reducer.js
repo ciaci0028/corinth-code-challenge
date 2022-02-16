@@ -8,6 +8,8 @@ const searchCharacter = (state = {}, action) => {
         // from the API and store it in the store at store.searchCharacter
         case 'SET_CHARACTER':
         return action.payload;
+        default:
+            return state;
     }
 };
 
