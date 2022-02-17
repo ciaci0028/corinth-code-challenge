@@ -15,9 +15,33 @@ const searchCharacter = (state = {}, action) => {
     }
 };
 
+// This will be called on page load to obtain all of the species
+// from the API
+const speciesList = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_SPECIES':
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
+// This will be called on page load to obtain all of the films
+// from the API
+const filmsList = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_FILMS':
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
 
 const rootReducer = combineReducers({
-    searchCharacter
+    searchCharacter,
+    speciesList,
+    filmsList
 });
 
 export default rootReducer;

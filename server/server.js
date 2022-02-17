@@ -9,6 +9,8 @@ const port = process.env.PORT || 5000;
 
 // Router variables
 const searchRouter = require('./routes/search.router');
+const speciesRouter = require('./routes/species.router');
+const filmRouter = require('./routes/film.router');
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.urlencoded({extended: true}));
@@ -17,6 +19,8 @@ app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
 app.use('/search', searchRouter);
+app.use('/films', filmRouter);
+app.use('/species', speciesRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {

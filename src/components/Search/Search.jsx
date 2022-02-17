@@ -1,5 +1,5 @@
 import './Search.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Component used for the search functionality for the app
@@ -9,7 +9,15 @@ function Search () {
     // Creating a local state to take input that person
     // is typing and collecting the data
     const [searchParams, setSearchParams] = useState('');
-    const character = useSelector(store => store.searchCharacter)
+    const character = useSelector(store => store.searchCharacter);
+
+    // Upon page load, I want to go to the API and 
+    // get all the information for the species and films
+    // And store them in the reducers so I can access them
+    useEffect(() => {
+        dispatch({type: 'FETCH_SPECIES'});
+        dispatch({type: 'FETCH_FILMS'})
+    }, [])
 
     // Function for getting the searched character
     // Using redux to set the character to the store
