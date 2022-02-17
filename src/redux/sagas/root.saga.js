@@ -14,10 +14,12 @@ function* fetchCharacter(action) {
     try {
         console.log('made it to fetch Character', action.payload)
         const response = yield axios.get(`/search/${action.payload}`);
+        console.log('response is', response.data);
         yield put({ 
             type: 'SET_CHARACTER',
             payload: response.data
         })
+        
     }
     catch (error) {
         console.log('failed to fetch character', error);
@@ -28,7 +30,7 @@ function* fetchCharacter(action) {
 function* fetchSpecies() {
     try {
         const response = yield axios.get('/species');
-        console.log('species response', response.data);
+        yield put({type: 'SET_SPECIES', payload: response.data})
     }
     catch (error) {
         console.log('failed to get species', error);
@@ -39,7 +41,7 @@ function* fetchSpecies() {
 function* fetchFilms() {
     try {
         const response = yield axios.get('/films');
-        console.log('film response', response.data);
+        yield put({type: 'SET_FILMS', payload: response.data})
     }
     catch (error) {
         console.log('failed to get films', error);

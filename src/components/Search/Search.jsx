@@ -2,6 +2,9 @@ import './Search.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Bringing in Character Profile Component
+import CharacterProfile from '../CharacterProfile/CharacterProfile';
+
 // Component used for the search functionality for the app
 function Search () {
     // Set up the dispatch feature
@@ -9,15 +12,18 @@ function Search () {
     // Creating a local state to take input that person
     // is typing and collecting the data
     const [searchParams, setSearchParams] = useState('');
-    const character = useSelector(store => store.searchCharacter);
 
     // Upon page load, I want to go to the API and 
     // get all the information for the species and films
     // And store them in the reducers so I can access them
     useEffect(() => {
         dispatch({type: 'FETCH_SPECIES'});
-        dispatch({type: 'FETCH_FILMS'})
-    }, [])
+        dispatch({type: 'FETCH_FILMS'});
+    }, []);
+
+    // Grabbing the species and films from the database
+    const speciesList = useSelector(store => store.speciesList);
+    const filmsList = useSelector(store => store.filmsList);
 
     // Function for getting the searched character
     // Using redux to set the character to the store
@@ -35,6 +41,11 @@ function Search () {
         setSearchParams('');
 
     }; // End of fetchSearchedCharacter function
+
+    // When the client clicks on the "display films" button
+    const handleFilms = (result) => {
+        console.log(result);
+    }     
 
     return (
         <>
@@ -55,17 +66,7 @@ function Search () {
                     May the force be with you
                 </button>
             </form>
-            {character.results?.map(result => (
-                <div key='1' className="results">
-                    <h4>Character Profile for {result.name}</h4>
-                    <>About:</><br/>
-                    <>Height: {result.height}</><br/>
-                    <>Weight: {result.mass}</><br/>
-                    <>Hair Color: {result.hair_color}</><br/>
-                    <>Birthdate: {result.birth_year}</><br/>
-                </div>
-            ))
-            }
+            <CharacterProfile />
         </>
     )
 }
