@@ -16,15 +16,18 @@ function Search () {
         // Because there is a form, we don't want it to refresh on submit
         event.preventDefault();
 
-        console.log('typing...', searchParams)
         dispatch({
             type: 'FETCH_SEARCHED_CHARACTER',
+            payload: searchParams
         })
+
+        setSearchParams('');
     };
 
     return (
         <>
-        <form>
+        <form className="form">
+            <p className="greeting">Welcome, Jedi</p>
                 <input
                     className='inputField'
                     placeholder="Search Star Wars Character Here"
@@ -32,10 +35,12 @@ function Search () {
                     onChange={(event) => setSearchParams(event.target.value)}
                 >
                 </input>
+                <br/>
                 <button
+                    className='searchButton'
                     onClick={(event) => fetchSearchedCharacter(event)}
                 >
-                    Search
+                    May the force be with you
                 </button>
             </form>
         </>

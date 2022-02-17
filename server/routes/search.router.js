@@ -5,12 +5,13 @@ const router = express.Router();
 // Axios for making requests
 const axios = require('axios');
 
-router.get('/', (req, res) => {
+router.get('/:searchParams', (req, res) => {
+    console.log('made it to get router');
     axios({
         method: 'GET',
-        url: 'https://swapi.dev/api/people/?search=',
+        url: 'https://swapi.dev/api/people/',
         params: {
-            search: 'chew'
+            search: req.params.searchParams
         }
     })
         .then((apiRes) => {
