@@ -29,3 +29,10 @@
     color: white;
     font-size: 20px;
 }
+
+.results {
+    margin: auto;
+    text-align: center;
+    background-color: rgb(209, 205, 205);
+    width: 300px;
+}

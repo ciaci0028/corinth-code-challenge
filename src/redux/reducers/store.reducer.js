@@ -7,7 +7,9 @@ const searchCharacter = (state = {}, action) => {
         // When 'SET_CHARACTER' is called, assign the information
         // from the API and store it in the store at store.searchCharacter
         case 'SET_CHARACTER':
-        return action.payload;
+            return action.payload;
+        case 'CLEAR_CHARACTER':
+            return {};
         default:
             return state;
     }

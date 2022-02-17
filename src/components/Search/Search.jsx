@@ -1,6 +1,6 @@
 import './Search.css';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Component used for the search functionality for the app
 function Search () {
@@ -9,6 +9,7 @@ function Search () {
     // Creating a local state to take input that person
     // is typing and collecting the data
     const [searchParams, setSearchParams] = useState('');
+    const character = useSelector(store => store.searchCharacter)
 
     // Function for getting the searched character
     // Using redux to set the character to the store
@@ -16,13 +17,16 @@ function Search () {
         // Because there is a form, we don't want it to refresh on submit
         event.preventDefault();
 
+        // Send the search parameters to the database to see if there is a match
         dispatch({
             type: 'FETCH_SEARCHED_CHARACTER',
             payload: searchParams
         })
 
+        // Reset search parameters for user aesthetics
         setSearchParams('');
-    };
+
+    }; // End of fetchSearchedCharacter function
 
     return (
         <>
@@ -43,6 +47,12 @@ function Search () {
                     May the force be with you
                 </button>
             </form>
+            {character.results?.map(result => (
+                <div className="results">
+                    <p>{result.name}</p>
+                </div>
+            ))
+            }
         </>
     )
 }
