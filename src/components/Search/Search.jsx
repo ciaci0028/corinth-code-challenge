@@ -48,8 +48,13 @@ function Search () {
                 </button>
             </form>
             {character.results?.map(result => (
-                <div className="results">
-                    <p>{result.name}</p>
+                <div key='1' className="results">
+                    <h4>Character Profile for {result.name}</h4>
+                    <>About:</><br/>
+                    <>Height: {result.height}</><br/>
+                    <>Weight: {result.mass}</><br/>
+                    <>Hair Color: {result.hair_color}</><br/>
+                    <>Birthdate: {result.birth_year}</><br/>
                 </div>
             ))
             }
