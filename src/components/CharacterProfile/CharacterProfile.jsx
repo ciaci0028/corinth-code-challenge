@@ -7,7 +7,7 @@ function CharacterProfile () {
     console.log(character)
     return (
         <>
-        {character.character.results ?
+        {character.character ?
             character.character.results.map(result => (
             <div key={result.name} className="results">
                 <h4>Character Profile for {result.name}</h4>
