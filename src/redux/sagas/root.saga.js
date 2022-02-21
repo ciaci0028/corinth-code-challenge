@@ -5,8 +5,6 @@ import { put, takeEvery } from 'redux-saga/effects';
 // Function of listeners to activate the requests
 function* sagaListeners() {
     yield takeEvery('FETCH_SEARCHED_CHARACTER', fetchCharacter);
-    yield takeEvery('FETCH_SPECIES', fetchSpecies);
-    yield takeEvery('FETCH_FILMS', fetchFilms);
 }
 
 // Saga for retrieving character from SWAPI
@@ -19,35 +17,12 @@ function* fetchCharacter(action) {
             type: 'SET_CHARACTER',
             payload: response.data
         })
-        
+
     }
     catch (error) {
         console.log('failed to fetch character', error);
     }
 };
-
-// Saga to go to API and get all the species
-function* fetchSpecies() {
-    try {
-        const response = yield axios.get('/species');
-        yield put({type: 'SET_SPECIES', payload: response.data})
-    }
-    catch (error) {
-        console.log('failed to get species', error);
-    }
-};
-
-// Saga to go to API and get all the films
-function* fetchFilms() {
-    try {
-        const response = yield axios.get('/films');
-        yield put({type: 'SET_FILMS', payload: response.data})
-    }
-    catch (error) {
-        console.log('failed to get films', error);
-    }
-};
-
 
 export default function* rootSaga() {
     yield all([

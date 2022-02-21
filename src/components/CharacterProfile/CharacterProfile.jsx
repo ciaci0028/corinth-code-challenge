@@ -4,10 +4,11 @@ function CharacterProfile () {
     // Importing the character from the store
     const character = useSelector(store => store.searchCharacter);
     
-    
+    console.log(character)
     return (
         <>
-        {character.results?.map(result => (
+        {character.character.results ?
+            character.character.results.map(result => (
             <div key={result.name} className="results">
                 <h4>Character Profile for {result.name}</h4>
                 <>About:</><br/>
@@ -15,9 +16,25 @@ function CharacterProfile () {
                 <>Weight: {result.mass}kg</><br/>
                 <>Hair Color: {result.hair_color}</><br/>
                 <>Birthdate: {result.birth_year}</><br/>
-                {/* <button onClick={(event) => handleFilms(event.target.value)}>Display Films</button> */}
+                <>Films Appeared In: <ul>{
+                    character.characterFilms.map(film => (
+                            <li>{film}</li>
+                    ))
+                    }</ul></>
+                <>Species: <ul>
+                    {character.characterSpecies.map(oneSpecies => (
+                        <li>{oneSpecies}</li>
+                    ))}
+                    </ul></>
+                <>Starships Flown:<ul>
+                        {character.characterStarships.map(starship => (
+                            <li>{starship}</li>
+                        ))}
+                    </ul></>
             </div>
         ))
+        :
+        <p className="falseCharacter">No character loaded</p>
         }
         </>
     )
