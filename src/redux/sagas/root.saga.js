@@ -12,16 +12,17 @@ function* fetchCharacter(action) {
     try {
         console.log('made it to fetch Character', action.payload)
         const response = yield axios.get(`/search/${action.payload}`);
+        console.log('response is', response.data);
         yield put({ 
             type: 'SET_CHARACTER',
             payload: response.data
         })
+
     }
     catch (error) {
         console.log('failed to fetch character', error);
     }
 };
-
 
 export default function* rootSaga() {
     yield all([

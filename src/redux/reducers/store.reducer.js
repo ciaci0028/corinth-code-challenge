@@ -15,9 +15,8 @@ const searchCharacter = (state = {}, action) => {
     }
 };
 
-
 const rootReducer = combineReducers({
-    searchCharacter
+    searchCharacter,
 });
 
 export default rootReducer;
