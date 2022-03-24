@@ -38,7 +38,6 @@ This application uses the following technologies:
 - [Express](https://expressjs.com/)
 - [Passport](http://www.passportjs.org/)
 - [Material-UI](https://material-ui.com/)
-- [react-chartjs-2](https://www.npmjs.com/package/react-chartjs-2)
 - [Passport.js](https://www.passportjs.org/)
 
 (a full list of dependencies can be found in `package.json`)
